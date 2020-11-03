@@ -5,7 +5,7 @@
     text-align: center;
 }
 
-.flex_container_1, .flex_container_rps, .flex_container_box {
+.flex_container_1, .flex_container_rps, .flex_container_box, .flex-1, .flex-2, .flex-3 {
     display: flex;
     border: 1px solid black;
     padding: 10px;
@@ -27,4 +27,35 @@
 
 .flex_container_rps img:hover {
     box-shadow: 0px 10px 50px red;
+}
+
+.flex-1, .flex-2 {
+    background-color: darkgreen;
+    color: white;   
+}
+
+.flex-1 div {
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    height: 350px;
+    flex: 1;
+}
+
+.flex-1 img {
+    width: 25%;
+    padding: 10px;
+}
+
+.flex-2 button {
+    border: 1px solid black;
+}
+
+.flex-3 {
+    background-color: yellowgreen;
+}
+
+table, th, td {
+    padding: 5px;
+    border: 1px solid black;
 }
