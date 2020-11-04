@@ -47,9 +47,21 @@ function botTochoose(number) {
 
 function decideWinner(yourChoice, botChoice) {
     var rpsDB = {
-        'rock': { 'scissor': 1, 'rock': 0.5, 'paper': 0 },
-        'paper': { 'scissor': 0, 'rock': 1, 'paper': 0.5 },
-        'scissor': { 'scissor': 0.5, 'rock': 0, 'paper': 1 }
+        'rock': {
+            'scissor': 1,
+            'rock': 0.5,
+            'paper': 0
+        },
+        'paper': {
+            'scissor': 0,
+            'rock': 1,
+            'paper': 0.5
+        },
+        'scissor': {
+            'scissor': 0.5,
+            'rock': 0,
+            'paper': 1
+        }
     };
     var yourScore = rpsDB[yourChoice][botChoice];
     var botScore = rpsDB[botChoice][yourChoice];
@@ -59,13 +71,20 @@ function decideWinner(yourChoice, botChoice) {
 
 function message([yourScore, botScore]) {
     if (yourScore === 0) {
-        return { 'message': 'You Lost!', 'color': 'red' };
-    }
-    else if (yourScore === 0.5) {
-        return { 'message': 'Match Tied!', 'color': 'orange' };
-    }
-    else {
-        return { 'message': 'You Won!', 'color': "green" };
+        return {
+            'message': 'You Lost!',
+            'color': 'red'
+        };
+    } else if (yourScore === 0.5) {
+        return {
+            'message': 'Match Tied!',
+            'color': 'orange'
+        };
+    } else {
+        return {
+            'message': 'You Won!',
+            'color': "green"
+        };
     }
 }
 
@@ -110,14 +129,11 @@ var copyButtons = {
 function buttonColorChange(buttonThing) {
     if (buttonThing.value === 'red') {
         buttonRed();
-    }
-    else if (buttonThing.value === 'green') {
+    } else if (buttonThing.value === 'green') {
         buttonGreen();
-    }
-    else if (buttonThing.value === 'resets') {
+    } else if (buttonThing.value === 'resets') {
         buttonReset();
-    }
-    else if (buttonThing.value === 'random') {
+    } else if (buttonThing.value === 'random') {
         buttonRandom();
     }
 }
@@ -156,10 +172,32 @@ function buttonRandom() {
 //Challenge 5
 
 let bjGame = {
-    'you': { 'scoreSpan': '#your-box-result', 'div': '#your-box', 'score': 0 },
-    'dealer': { 'scoreSpan': '#dealer-box-result', 'div': '#dealer-box', 'score': 0 },
+    'you': {
+        'scoreSpan': '#your-box-result',
+        'div': '#your-box',
+        'score': 0
+    },
+    'dealer': {
+        'scoreSpan': '#dealer-box-result',
+        'div': '#dealer-box',
+        'score': 0
+    },
     'cards': ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'K', 'Q', 'J', 'A'],
-    'cardsMap': { '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '10': 10, 'K': 10, 'Q': 10, 'J': 10, 'A': [1, 11] },
+    'cardsMap': {
+        '2': 2,
+        '3': 3,
+        '4': 4,
+        '5': 5,
+        '6': 6,
+        '7': 7,
+        '8': 8,
+        '9': 9,
+        '10': 10,
+        'K': 10,
+        'Q': 10,
+        'J': 10,
+        'A': [1, 11]
+    },
     'wins': 0,
     'losses': 0,
     'draws': 0,
@@ -230,12 +268,10 @@ function updateScore(card, activePlayer) {
     if (card === 'A') {
         if (activePlayer['score'] + bjGame['cardsMap'][card][1] <= 21) {
             activePlayer['score'] += bjGame['cardsMap'][card][1];
-        }
-        else {
+        } else {
             activePlayer['score'] += bjGame['cardsMap'][card][0];
         }
-    }
-    else {
+    } else {
         activePlayer['score'] += bjGame['cardsMap'][card];
     }
 }
@@ -251,7 +287,7 @@ function showScore(activePlayer) {
 }
 
 function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve,ms));
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function dealerLogic() {
@@ -274,20 +310,16 @@ function computeWinner() {
         if (YOU['score'] > DEALER['score'] || (DEALER['score'] > 21)) {
             bjGame['wins']++;
             winner = YOU;
-        }
-        else if (YOU['score'] < DEALER['score']) {
+        } else if (YOU['score'] < DEALER['score']) {
             bjGame['losses']++;
             winner = DEALER;
-        }
-        else if (YOU['score'] === DEALER['score']) {
+        } else if (YOU['score'] === DEALER['score']) {
             bjGame['draws']++;
         }
-    }
-    else if (YOU['score'] > 21 && DEALER['score'] <= 21) {
+    } else if (YOU['score'] > 21 && DEALER['score'] <= 21) {
         bjGame['losses']++;
         winner = DEALER;
-    }
-    else if (YOU['score'] > 21 && DEALER['score'] > 21) {
+    } else if (YOU['score'] > 21 && DEALER['score'] > 21) {
         bjGame['draws']++;
     }
     return winner;
@@ -303,14 +335,12 @@ function showResult(winner) {
             message = 'YOU WON!';
             messageColor = 'green';
             winSound.play();
-        }
-        else if (winner === DEALER) {
+        } else if (winner === DEALER) {
             document.querySelector('#losses').textContent = bjGame['losses'];
             message = 'YOU LOST!';
             messageColor = 'red';
             lossSound.play();
-        }
-        else {
+        } else {
             document.querySelector('#draws').textContent = bjGame['draws'];
             message = "Tied !!";
             messageColor = 'black';

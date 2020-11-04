@@ -5,7 +5,12 @@
     text-align: center;
 }
 
-.flex_container_1, .flex_container_rps, .flex_container_box, .flex-1, .flex-2, .flex-3 {
+.flex_container_1,
+.flex_container_rps,
+.flex_container_box,
+.flex-1,
+.flex-2,
+.flex-3 {
     display: flex;
     border: 1px solid black;
     padding: 10px;
@@ -29,9 +34,10 @@
     box-shadow: 0px 10px 50px red;
 }
 
-.flex-1, .flex-2 {
+.flex-1,
+.flex-2 {
     background-color: darkgreen;
-    color: white;   
+    color: white;
 }
 
 .flex-1 div {
@@ -55,7 +61,9 @@
     background-color: yellowgreen;
 }
 
-table, th, td {
+table,
+th,
+td {
     padding: 5px;
     border: 1px solid black;
 }
